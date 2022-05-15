@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileWriter;
 
@@ -21,7 +20,7 @@ public class Teller {
         try {
             BufferedReader br = new BufferedReader(new FileReader(account+".txt"));
             s = br.readLine().split(",");
-            
+            br.close();
             
         }catch(Exception ex) {
             System.out.println("Something went wrong readaccount");
@@ -65,10 +64,10 @@ public class Teller {
     // create account
     public void createAccount() {
         System.out.println("Create Account");
-        System.out.println("Name: ");
-        String name = scanner.nextLine();
-        System.out.println("Last Name: ");
-        String lastName = scanner.nextLine();
+        System.out.print("Name: ");
+        String name = scanner.next();
+        System.out.print("Last Name: ");
+        String lastName = scanner.next();
         System.out.print("Set a 4-digits pin: ");
         short pin = scanner.nextShort();
         int newAccountNumber = (int)Math.floor(Math.random()*9999);
