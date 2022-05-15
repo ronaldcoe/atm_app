@@ -1,8 +1,12 @@
+import java.text.NumberFormat;
+
 public class Main {
     
     public static void main(String[] args) {
         Teller teller = new Teller();
         Account account;
+        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
+       
 
         // Display welcome message and options
         int option = 0;
@@ -21,7 +25,7 @@ public class Main {
                     if (teller.checkPermission()) { // First, check if the user have permission to acces the account
                         String[] accountInfo = teller.readAccount();
                         account = new Account(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3]);
-                        System.out.println("Your account balance is: $" + account.getBalance());
+                        System.out.println("Your account balance is: " + defaultFormat.format(Integer.parseInt(account.getBalance())));
                     }else {
                         System.out.println("\nYou dont have permission to check this account");
                     }
@@ -33,7 +37,7 @@ public class Main {
                         String[] accountInfo = teller.readAccount();
                         account = new Account(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3]);
                         account.depositMoney();
-                        System.out.println("Your balance is: $"+account.getBalance());
+                        System.out.println("Your account balance is: " + defaultFormat.format(Integer.parseInt(account.getBalance())));
                     }else {
                         System.out.println("You dont have permission to check this account");
                     }

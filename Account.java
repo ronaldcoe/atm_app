@@ -49,6 +49,7 @@ public class Account {
         
     }
 
+    // Make a deposit
     public void depositMoney() {
         int balance = Integer.parseInt(accountBalance);
         int amount = screen.getInput("How much you want to deposit? ");
