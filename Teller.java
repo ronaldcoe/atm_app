@@ -14,7 +14,7 @@ public class Teller {
 
   
 
-
+    // If the user have permission, read all the account information.
     public String[] readAccount() {
         String[] s = null;
         try {
@@ -30,6 +30,7 @@ public class Teller {
         
     }
 
+    // Check if the user have permission to check the account. We also get the account number for other transactions
     public boolean checkPermission() {
         String[] s;
         account = screen.getInput("What is your account number?: ");
@@ -48,7 +49,7 @@ public class Teller {
         return false;
     }
 
-    //Display welcome message and options
+    // Display welcome message and options
     public int getOption() {
         screen.displayMessage("Welcome to the ATM app. How can I help you today?\n1. Open a new account\n2. Check Balance\n3. Make a deposit\n4. Withdraw money\n5. Quit");
         System.out.print("> ");
@@ -57,6 +58,7 @@ public class Teller {
 
     }
 
+    // Display goodbye message
     public void sayQuitMessage() {
         screen.displayMessage("Thank you for using our system. See you soon!");
     }
@@ -75,6 +77,8 @@ public class Teller {
         short newAccountPin = pin; 
 
         try {
+
+            // Create a new file using the information provided by the user. Initial balance is set to 0
             BufferedWriter bw = new BufferedWriter(new FileWriter(newAccountNumber+".txt"));
             bw.write( newAccountNumber + "," + newAccountPin + "," + newAccountHolder + "," + 0);
             bw.close();

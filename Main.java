@@ -4,18 +4,21 @@ public class Main {
         Teller teller = new Teller();
         Account account;
 
-        //Display welcome message and options
+        // Display welcome message and options
         int option = 0;
         while(option != 5){
             
             option = teller.getOption();
             switch(option) {
+
+                // Create a new Account
                 case 1:
-                    teller.createAccount();
-                    
+                    teller.createAccount();                    
                     break;
+
+                // Check balance
                 case 2:
-                    if (teller.checkPermission()) {
+                    if (teller.checkPermission()) { // First, check if the user have permission to acces the account
                         String[] accountInfo = teller.readAccount();
                         account = new Account(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3]);
                         System.out.println("Your account balance is: $" + account.getBalance());
@@ -23,6 +26,8 @@ public class Main {
                         System.out.println("\nYou dont have permission to check this account");
                     }
                     break;
+
+                // Make a deposit    
                 case 3:
                     if (teller.checkPermission()) {
                         String[] accountInfo = teller.readAccount();
@@ -33,6 +38,8 @@ public class Main {
                         System.out.println("You dont have permission to check this account");
                     }
                     break;
+
+                // Withdraw money
                 case 4:
                 if (teller.checkPermission()) {
                     String[] accountInfo = teller.readAccount();
@@ -42,7 +49,9 @@ public class Main {
                 }else {
                     System.out.println("You dont have permission to check this account");
                 }
-                break;                  
+                break;   
+                
+                // Quit the program
                 case 5:
                     teller.sayQuitMessage();
                     break;
