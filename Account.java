@@ -4,13 +4,13 @@ import java.io.FileWriter;
 
 public class Account {
 
-    private int accountBalance;
-    private int accountNumber;
-    private int accountPin;
+    private String accountBalance;
+    private String accountNumber;
+    private String accountPin;
     private String accountHolder;
     Screen screen = new Screen();
 
-    public Account(int balance, int number, int pin, String holder) {
+    public Account(String number, String pin, String holder, String balance) {
         accountBalance = balance;
         accountNumber = number;
         accountPin = pin;
@@ -18,32 +18,40 @@ public class Account {
 
     }
 
-    public Account(String string, String string2, String string3, String holder) {
-    }
-
-    public int getBalance() {
+    public String getBalance() {
         return accountBalance;
     }
 
     public void withdrawMoney() {
-        
-        int amount = screen.getInput("How much you want to withdraw");
-        while (amount > accountBalance) {
+        int balance = Integer.parseInt(accountBalance);
+        int amount = screen.getInput("How much you want to withdraw?: ");
+        while (amount > balance) {
             System.out.println("Unsufficient funds");
-            amount = screen.getInput("How much you want to deposit");
+            amount = screen.getInput("How much you want to withdraw?: ");
         }
+        accountBalance = Integer.toString(balance -= amount);
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(accountNumber+".txt"));
             bw.write(accountNumber + "," + accountPin + "," + accountHolder + "," + accountBalance);
+            bw.close();
         }catch(Exception ex) {
             System.out.println("Something went wrong");;
         }
-        accountBalance -= amount;
+        
 
+        
     }
 
     public void depositMoney() {
+        int balance = Integer.parseInt(accountBalance);
         int amount = screen.getInput("How much you want to deposit? ");
-        accountBalance += amount;
+        accountBalance =  Integer.toString(balance += amount);
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(accountNumber+".txt"));
+            bw.write(accountNumber + "," + accountPin + "," + accountHolder + "," + accountBalance);
+            bw.close();
+        }catch(Exception ex) {
+            System.out.println("Something went wrong");
+        }
     }
 }
