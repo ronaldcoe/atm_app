@@ -43,7 +43,7 @@ public class Teller {
             }
             
         }catch(Exception ex) {
-            System.out.println("Something went wrong checkpermission");
+            System.out.println("Something went wrong");
             
         }
         return false;

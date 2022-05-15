@@ -20,7 +20,7 @@ public class Main {
                         account = new Account(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3]);
                         System.out.println("Your account balance is: $" + account.getBalance());
                     }else {
-                        System.out.println("You dont have permission to check this account");
+                        System.out.println("\nYou dont have permission to check this account");
                     }
                     break;
                 case 3:
